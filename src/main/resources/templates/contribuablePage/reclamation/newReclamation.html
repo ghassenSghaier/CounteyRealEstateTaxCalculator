@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+	<nav th:replace="fragments/header :: nav"></nav>
+
+	<div id="admin-section">
+		<div class="admin-inner">
+			<div class="container">
+				<div class="d-flex flex-row">
+					<div th:replace="fragments/adminSidebar :: admin-sidebar"></div>
+
+					<div id="admin-content">
+						<form class="admin-form"
+							th:action="@{/contribuablePage/reclamations/newReclamation/contribuable1}"
+							th:object="${newReclamation}" th:method="post" method="post">
+							<ul class="global-errors" th:if="${#fields.hasErrors('global')}">
+								<li class="text-danger"
+									th:each="err : ${#fields.errors('global')}" th:text="${err}">Input
+									is incorrect</li>
+							</ul>							
+							<div class="form-group">
+								<label for="newUserSurname">article</label> <input type="text"
+									class="form-control" th:field="*{article}" id="newUserSurname"
+									placeholder="Enter surname">
+								<p class="text-danger" th:if="${#fields.hasErrors('article')}"
+									th:errors="*{article}"></p>
+							</div>
+							<div class="form-group">
+								<label for="newUserUsername">taxation</label> <input type="text"
+									class="form-control" th:field="*{taxation}"
+									id="newUserUsername" placeholder="Enter username">
+								<p class="text-danger" th:if="${#fields.hasErrors('taxation')}"
+									th:errors="*{taxation}"></p>
+							</div>
+							<div class="form-group">
+								<label for="newUserEmail">Motif Reclamation</label> <input
+									th:type="text" type="text" class="form-control"
+									th:field="*{motifReclamation}" id="newUserEmail"
+									aria-describedby="emailHelp" placeholder="Enter email">
+								<small id="emailHelp" class="form-text text-muted">We'll
+									never share your email with anyone else. </small>
+								<!--<span class="text-danger"  th:text="${alreadyRegisteredMessage}"></span>-->
+								<span class="text-danger"
+									th:if="${#fields.hasErrors('motifReclamation')}"
+									th:errors="*{motifReclamation}"></span>
+							</div>
+							<a class="btn btn-dark"
+								th:href="@{/contribuablePage/reclamations/contribuable1}">Cancel</a>
+							<button type="submit" class="btn btn-primary">Submit</button>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="fragments/footer :: footer"></footer>
+	<div th:replace="fragments/jsScripts :: scripts"></div>
+
+</body>
+</html>

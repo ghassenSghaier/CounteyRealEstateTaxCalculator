@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+	<nav th:replace="fragments/header :: nav"></nav>
+
+	<div id="admin-section">
+		<div class="admin-inner">
+			<div class="container">
+				<div class="d-flex flex-row">
+					<div th:replace="fragments/adminSidebar :: admin-sidebar"></div>
+
+					<div id="admin-content">
+						<fieldset>
+							<form class="admin-form"
+								th:action="@{/adminPage/articles/newArticle}"
+								th:object="${newArticle}" th:method="post" method="post">
+								<ul class="global-errors" th:if="${#fields.hasErrors('global')}">
+									<li class="text-danger"
+										th:each="err : ${#fields.errors('global')}" th:text="${err}">Input
+										is incorrect</li>
+								</ul>
+								<div class="form-group">
+									<label for="newNumeroMunicipal">Numero Municipal</label> <input
+										type="text" class="form-control" th:field="*{numeroMunicipal}"
+										id="newNumeroMunicipal" placeholder="Enter numero municipal">
+									<p class="text-danger"
+										th:if="${#fields.hasErrors('numeroMunicipal')}"
+										th:errors="*{numeroMunicipal}"></p>
+								</div>
+								<div class="form-group">
+									<label for="newRepArticle">Repetition article</label> <input
+										type="number" class="form-control" th:field="*{repArticle}"
+										id="newRepArticle" placeholder="Enter repetition article">
+									<p class="text-danger"
+										th:if="${#fields.hasErrors('repArticle')}"
+										th:errors="*{repArticle}"></p>
+								</div>
+								<div class="form-group">
+									<label for="newCodePostal">Code Postal</label> <input
+										type="text" class="form-control" th:field="*{codePostal}"
+										id="newCodePostal" placeholder="Enter code postal">
+									<p class="text-danger"
+										th:if="${#fields.hasErrors('codePostal')}"
+										th:errors="*{codePostal}"></p>
+								</div>
+								<div class="form-group">
+									<label for="newSurfaceCouvert">Surface Couvert</label> <input
+										th:type="number" type="number" class="form-control"
+										th:field="*{surfaceCouvert}" id="newSurfaceCouvert"
+										aria-describedby="surfaceCouvertHelp"
+										placeholder="Enter surface couvert">
+									<!--                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone -->
+									<!--                                 else. -->
+									<!--                             </small> -->
+									<!--<span class="text-danger"  th:text="${alreadyRegisteredMessage}"></span>-->
+									<span class="text-danger"
+										th:if="${#fields.hasErrors('surfaceCouvert')}"
+										th:errors="*{surfaceCouvert}"></span>
+								</div>
+								<div class="form-group">
+									<label th:for="surfaceTotal" for="newsurfaceTotal">Surface
+										Total</label> <input type="number" class="form-control"
+										th:field="*{surfaceTotal}" id="newSurfaceTotal"
+										placeholder="Surface Total">
+									<p class="text-danger"
+										th:if="${#fields.hasErrors('surfaceTotal')}"
+										th:errors="*{surfaceTotal}"></p>
+								</div>
+								<a class="btn btn-dark" th:href="@{/adminPage/articles}">Cancel</a>
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</form>
+						</fieldset>
+						<fieldset>
+							<div class="form-group">
+								<label th:for="occupantArticle" for="propArticle">propriétaire
+									Article</label><input type="radio" class="form-control"
+									th:field="*{occupantArticle}" th:value="propriétaire"
+									id="propArticle"> <label th:for="occupantArticle"
+									for="locArticle">Locataire Article</label><input type="radio"
+									class="form-control" th:field="*{occupantArticle}"
+									th:value="locataire" id="locArticle"> <label
+									th:for="occupantArticle" for="occupArticle">Occupant
+									Article</label><input type="radio" class="form-control"
+									th:field="*{occupantArticle}" th:value="occupant"
+									id="occupArticle">
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('occupantArticle')}"
+									th:errors="*{occupantArticle}"></p>
+							</div>
+							<div class="form-group">
+								<label th:for="nomPropArticle" for="nomPropArticle">Nom
+									</label><input type="text" class="form-control"
+									th:field="*{nomProp}" id="nomPropArticle">
+									<p class="text-danger"
+									th:if="${#fields.hasErrors('nomProp')}"
+									th:errors="*{nomProp}"></p>
+							</div> 
+							<div class="form-group">
+								<label th:for="prenomPropArticle" for="prenomPropArticle">Prenom
+									</label><input type="text" class="form-control"
+									th:field="*{prenomProp}" id="prenomPropArticle">
+									<p class="text-danger"
+									th:if="${#fields.hasErrors('prenomProp')}"
+									th:errors="*{prenomProp}"></p>
+							</div>
+							<div class="form-group">
+								<label th:for="prenomPropArticle" for="prenomPropArticle">Prenom
+									</label><input type="text" class="form-control"
+									th:field="*{prenomProp}" id="prenomPropArticle">
+									<p class="text-danger"
+									th:if="${#fields.hasErrors('prenomProp')}"
+									th:errors="*{prenomProp}"></p>
+							</div>
+							<div class="form-group">
+								<label th:for="nomEntreArticle" for="nomEntreArticle">Nom Entreprise
+									</label><input type="text" class="form-control"
+									th:field="*{nomEntre}" id="nomEntre">
+									<p class="text-danger"
+									th:if="${#fields.hasErrors('nomEntre')}"
+									th:errors="*{nomEntre}"></p>
+							</div>
+								<label th:for="occupantArticle"	for="locArticle">Locataire Article</label><input type="radio"
+									class="form-control" th:field="*{occupantArticle}"
+									th:value="locataire" id="locArticle"> <label
+									th:for="occupantArticle" for="occupArticle">Occupant
+									Article</label><input type="radio" class="form-control"
+									th:field="*{occupantArticle}" th:value="occupant"
+									id="occupArticle">
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('occupantArticle')}"
+									th:errors="*{occupantArticle}"></p>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="fragments/footer :: footer"></footer>
+	<div th:replace="fragments/jsScripts :: scripts"></div>
+
+</body>
+</html>

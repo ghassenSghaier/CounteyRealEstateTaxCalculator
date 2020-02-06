@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+	<nav th:replace="fragments/header :: nav"></nav>
+
+	<div id="admin-section">
+		<div class="admin-inner">
+			<div class="container">
+				<div class="d-flex flex-row">
+					<div th:replace="fragments/adminSidebar :: admin-sidebar"></div>
+					<div id="admin-content">
+						<form class="admin-form"
+							th:action="@{/contribuablePage/declarations/newDeclaration/tcl}"
+							th:object="${newDeclaration}" th:method="post" method="post">
+							<ul class="global-errors" th:if="${#fields.hasErrors('global')}">
+								<li class="text-danger"
+									th:each="err : ${#fields.errors('global')}" th:text="${err}">Input
+									is incorrect</li>
+							</ul>
+							<div class="form-group">
+								<label for="newNumeroMunicipal">Numero Municipal</label> <input
+									type="text" class="form-control" th:field="*{numeroMunicipal}"
+									id="newNumeroMunicipal" placeholder="Enter numero municipal">
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('*{numeroMunicipal}')}"
+									th:errors="*{numeroMunicipal}"></p>
+							</div>
+							<div class="form-group">
+								<label for="newCodePostal">Code Postal</label> <input
+									type="text" class="form-control" th:field="*{codePostal}"
+									id="newCodePostal" placeholder="Enter code postal">
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('codePostal')}"
+									th:errors="*{codePostal}"></p>
+							</div>
+							<div class="form-group">
+								<label for="newCodeRue">Code Rue</label> <input type="text"
+									class="form-control" th:field="*{codeRue}" id="newCodeRue"
+									placeholder="Enter code rue">
+								<p class="text-danger" th:if="${#fields.hasErrors('codeRue')}"
+									th:errors="*{codeRue}"></p>
+							</div>
+							<div class="form-group">
+								<label for="newPrestations">Prestations</label> <select  multiple
+									th:field="*{pres}" id="newPrestations"
+									th:with="strList = ${ {'Nettoyage','Eclairage Public','Rues Goudronnés','Dégagement Eaux Usés','Dégagement Eaux Pluvial','Trottoirs Pavetés'} }"
+									class="form-control">
+									<option th:each="p, iStat: ${strList}"
+										th:value="${p}" th:text="${p}"
+										th:selected="${pres != null and #lists.contains(pres,(iStat.index) + 1)}">
+									</option>
+								</select>
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('prestations')}"
+									th:errors="*{prestations}"></p>
+							</div>
+							<div class="form-group">
+								<label for="newSurfaceCouvert">Surface Couvert</label> <input
+									type="number" class="form-control" th:field="*{surfaceCouvert}"
+									id="newSurfaceCouvert" placeholder="Enter surface couvert"> 
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('surfaceCouvert')}"
+									th:errors="*{surfaceCouvert}"></p>
+							</div>
+							<div class="form-group">
+								<label th:for="newsurfaceTotal">Surface Total</label> <input
+									type="number" class="form-control" th:field="*{surfaceTotal}"
+									id="newSurfaceTotal" placeholder="Enter Surface Total">
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('surfaceTotal')}"
+									th:errors="*{surfaceTotal}"></p>
+							</div>
+							<div class="form-group">
+								<label th:for="newActivitéPrincipal">Activité Principal
+								</label> <input type="text" class="form-control"
+									th:field="*{activitePrincipal}" id="newActivitéPrincipal"
+									placeholder="Activité Principal">
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('activitePrincipal')}"
+									th:errors="*{activitePrincipal}"></p>
+							</div>
+							<div class="form-group">
+								<label th:for="newActivitéSecondaire">Activité
+									Secondaire </label> <input type="text" class="form-control"
+									th:field="*{activiteSecondaire}" id="newActivitéSecondaire"
+									placeholder="Activité Secondaire">
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('activiteSecondaire')}"
+									th:errors="*{activiteSecondaire}"></p>
+							</div>
+							<div class="form-group">
+								<label th:for="newNomCommercial">Nom Commcercial </label> <input
+									type="text" class="form-control" th:field="*{nomCommercial}"
+									id="newNomCommercial" placeholder="Nom Commcercial">
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('nomCommercial')}"
+									th:errors="*{nomCommercial}"></p>
+							</div>
+							<div class="form-group">
+								<label th:for="newTypeActivité">Type Activité </label> <select
+									class="form-control" th:field="*{typeActivite}"
+									id="newTypeActivité">
+									<option value="Commercial">Commercial</option>
+									<option value="Industriel">Industriel</option>
+									<option value="Hotel">Hotel</option>
+									<option value="Professionnel">Professionnel</option>
+									<option value="Services">Services</option>
+									<option value="Administratif">Administratif</option>
+									<option value="Agriculturel">Agriculturel</option>
+								</select>
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('typeActivite')}"
+									th:errors="*{typeActivite}"></p>
+							</div>
+							<div class="form-group">
+								<label th:for="marquePublicitaire" for="newMarquePublicitaire">Marque
+									Publicitaire </label> <select th:field="*{marquePublicitaire}"
+									id="marquePublicitaire">
+									<option value="oui">oui</option>
+									<option value="non">non</option>
+								</select>
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('marquePublicitaire')}"
+									th:errors="*{marquePublicitaire}"></p>
+							</div>
+							<div class="form-group">
+								<label th:for="travauxPublics" for="newTravauxPublics">Travaux
+									Publics</label> <select th:field="*{travauxPublics}"
+									id="travauxPublics">
+									<option value="oui">oui</option>
+									<option value="non">non</option>
+								</select>
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('travauxPublics')}"
+									th:errors="*{travauxPublics}"></p>
+							</div>
+
+
+							<a class="btn btn-dark"
+								th:href="@{/contribuablePage/declarations/tcl}">Cancel</a>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="fragments/footer :: footer"></footer>
+	<div th:replace="fragments/jsScripts :: scripts"></div>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
+<head>
+<title>ajout des contribuables</title>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#typepersonne").hide();
+		$('#rolepersonne').change(function() {
+			var selectedUser = $(this).children('option:selected').val();
+			if (selectedUser == "1") {
+
+				$("#typepersonne").show();
+			} else {
+				$("#typepersonne").hide();
+			}
+		});
+
+		$("#personnephysique input[type='checkbox']").next().hide();
+		$("#personnephysique input[type='checkbox']").click(function() {
+			if ($(this).is(":checked")) {
+				$(this).next().show();
+			} else {
+				$(this).next().hide();
+			}
+		});
+		$('#personnemorale input[type="checkbox"]').next().hide();
+		$('#personnemorale input[type="checkbox"]').click(function() {
+			if ($(this).is(":checked")) {
+				$(this).next().show();
+			} else {
+				$(this).next().hide();
+			}
+		});
+		$('#personnephysique').hide();
+		$('#personnemorale').hide();
+		$('#typepersonne').change(function() {
+			var selectedPersonne = $(this).children("option:selected").val();
+			if (selectedPersonne == "0") {
+				$('#personnephysique').hide();
+				$('#personnemorale').hide();
+			} else if (selectedPersonne == "1") {
+				$('#personnephysique').show();
+				$('#personnemorale').hide();
+			} else {
+				$('#personnephysique').hide();
+				$('#personnemorale').show();
+			}
+		});
+	});
+
+	// 	function admSelectCheck(nameSelect) {
+	// 		console.log(nameSelect);
+	// 		if (nameSelect) {
+	// 			// 	        admOptionValue = document.getElementById("admOption").value;
+	// 			if (nameSelect.value == 1) {
+	// 				document.getElementById("personnephysique").style.display = "block";
+	// 				document.getElementById("personnemorale").style.display = "none";
+	// 			} else {
+	// 				document.getElementById("personnephysique").style.display = "none";
+	// 				document.getElementById("personnemorale").style.display = "block";
+	// 			}
+	// 		} else {
+	// 			document.getElementById("personnephysique").style.display = "none";
+	// 			document.getElementById("personnemorale").style.display = "none";
+	// 		}
+	// 	}
+</script>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<h1>Ajout Utilisateur</h1>
+				<form th:action="@{/taxecommune/rest/v1/services/contribuable/add}" method="post">
+					<!--                 <div th:if="${param.error}"> -->
+					<!--                     <div class="alert alert-danger"> -->
+					<!--                         Invalid username or password. -->
+					<!--                     </div> -->
+					<!--                 </div> -->
+					<!--                 <div th:if="${param.logout}"> -->
+					<!--                     <div class="alert alert-info"> -->
+					<!--                         You have been logged out. -->
+					<!--                     </div> -->
+					<!--                 </div> -->
+					
+					<div class="form-group">
+					<label for="rolepersonne"> Role de l'utilisateur
+						<select id="rolepersonne" name="userRoles">
+							<option value="0"></option>
+							<option value="ROLE_CONTRIBUABLE">Contribuable</option>
+							<option value="ROLE_AGENTMUNICIPAL">Agent Municipal</option>
+						</select>
+						</label>
+					</div>
+					<div class="form-group">
+					<label for="statut"> Type du personne 
+						<select id="typepersonne" name="statut">
+							<option value="0"></option>
+							<option value="PersonnePhysique">Personne Physique</option>
+							<option value="PersonneMorale">Personne Morale</option>
+						</select>
+						</label>
+					</div>
+					<div class="form-group">
+						<div id="personnephysique">
+							<label for="cartesejour"> Carte Sejour <input
+								class="checkbox single1" type="checkbox" value="cartesejour"
+								name="carteSejour" id="cartesejour"> <input type="text"
+								id="sejour" name="sejour" placeholder="numéro de carte sejour" />
+							</label> <label for="lepasseport"> Numéro passeport <input
+								class="checkbox single2" type="checkbox" value="lepasseport"
+								name="numPasseport" id="lepasseport"> <input type="text"
+								id="passeport" name="passeport"
+								placeholder="numéro de passeport" />
+							</label> <label for="lacin"> carte d'identité nationale <input
+								class="checkbox signle3" type="checkbox" value="lacin"
+								name="numCin" id="lacin"> <input type="text" id="cin"
+								name="cin" placeholder="numéro de carte d'identité nationale" />
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div id="personnemorale">
+							<label for="codefis"> code fiscal <input
+								class="checkbox single" type="checkbox" value="codefis"
+								name="codeFiscal" id="codefis"> <input type="text" id="fis"
+								name="fis" placeholder="code fiscal" />
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="identifiant">identifiant unique</label>: <input type="text"
+							id="identifiant" name="identifiant" class="form-control"
+							placeholder="Identifiant unique">
+					</div>
+					<div class="form-group">
+						<label for="username">Username</label>: <input type="text"
+							id="username" name="username" class="form-control"
+							placeholder="Username">
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>: <input type="password"
+							id="password" name="password" class="form-control"
+							placeholder="Password">
+					</div>					
+					<div class="form-group">
+						<label for="email">Email</label>: <input type="email" id="email"
+							name="email" class="form-control" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<label for="numtel">Numéro de telephone</label>: <input type="tel" id="numtel"
+							name="numeroTel" class="form-control" placeholder="Numéro du telephone">
+					</div>
+					<div class="form-group">
+						<label for="nom">Nom </label>: <input type="text" id="nom"
+							name="nom" class="form-control" placeholder="Nom">
+					</div>
+					<div class="form-group">
+						<label for="prenom">Prenom </label>: <input type="text" id="prenom"
+							name="prenom" class="form-control" placeholder="Prenom">
+					</div>
+					<div class="form-group">
+						<label for="adresse">Adresse</label>: <input type="text"
+							id="adresse" name="adresse" class="form-control"
+							autofocus="autofocus" placeholder="Adresse">
+					</div>					
+					<div class="form-group">
+						<label for="ville">ville</label>: <input type="text"
+							id="ville" name="ville" class="form-control"
+							autofocus="autofocus" placeholder="Ville">
+					</div>
+					<div class="form-group">
+						<label for="codepostal">code postal</label>: <input type="text"
+							id="codepostal" name="codePostal" class="form-control"
+							autofocus="autofocus" placeholder="code postal">
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3">
+								<input type="submit" name="login-submit" id="login-submit"
+									class="form-control btn btn-info" value="Add">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<p>
+			<a href="/" th:href="@{/}">Back to home page</a>
+		</p>
+
+	</div>
+</body>
+</html>

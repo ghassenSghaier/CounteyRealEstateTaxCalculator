@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+	<nav th:replace="fragments/header :: nav"></nav>
+
+	<div id="admin-section">
+		<div class="admin-inner">
+			<div class="container">
+				<div class="d-flex flex-row">
+					<div th:replace="fragments/adminSidebar :: admin-sidebar"></div>
+
+					<div id="admin-content">
+						<form class="admin-form"
+							th:action="@{/adminPage/cellules/newCellule}"
+							th:object="${newCellule}" th:method="post" method="post">
+							<ul class="global-errors" th:if="${#fields.hasErrors('global')}">
+								<li class="text-danger"
+									th:each="err : ${#fields.errors('global')}" th:text="${err}">Input
+									is incorrect</li>
+							</ul>
+							<div class="form-group">
+								<label for="newCelluleCode">Code Cellule</label> <input
+									type="text" class="form-control" th:field="*{code}"
+									id="newCelluleCode" placeholder="Enter code">
+								<p class="text-danger" th:if="${#fields.hasErrors('code')}"
+									th:errors="*{code}"></p>
+							</div>
+							<div class="form-group">
+								<label for="newSecteurCode">Code Secteur</label> <input
+									type="text" class="form-control" th:field="*{codeSecteur}"
+									id="newSecteurCode" placeholder="Enter code Secteur">
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('codeSecteur')}"
+									th:errors="*{codeSecteur}"></p>
+							</div>
+							<a class="btn btn-dark" th:href="@{/adminPage/cellules}">Cancel</a>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="fragments/footer :: footer"></footer>
+	<div th:replace="fragments/jsScripts :: scripts"></div>
+
+</body>
+</html>

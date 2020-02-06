@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+	<nav th:replace="fragments/header :: nav"></nav>
+
+	<div id="admin-section">
+		<div class="admin-inner">
+			<div class="container">
+				<div class="d-flex flex-row">
+					<div th:replace="fragments/adminSidebar :: admin-sidebar"></div>
+					<div id="admin-content">
+						<form class="admin-form"
+							th:action="@{/adminPage/articles/{id}(id=${articleUpdateDto.id})}"
+							th:object="${articleUpdateDto}" th:method="post" method="post">
+							<ul class="global-errors" th:if="${#fields.hasErrors('global')}">
+								<li class="text-danger"
+									th:each="err : ${#fields.errors('global')}" th:text="${err}">
+									Input is incorrect</li>
+							</ul>
+							<div class="form-group">
+								<label for="editedNumeroMunicipal">Numero municipal</label> <input
+									id="editedNumeroMunicipal" type="text" class="form-control"
+									th:field="*{numeroMunicipal}">
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('numeroMunicipal')}"
+									th:errors="*{numeroMunicipal}"></p>
+							</div>
+							<div class="form-group">
+								<label for="editedRepArticle">Répition Article</label> <input
+									id="editedRepArticle" type="text" class="form-control"
+									th:field="*{repArticle}">
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('repArticle')}"
+									th:errors="*{repArticle}"></p>
+							</div>
+							<div class="form-group">
+								<label for="editedCodePostal">Code Postal</label> <input
+									id="editedCodePostal" type="text" class="form-control"
+									th:field="*{codePostal}">
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('codePostal')}"
+									th:errors="*{codePostal}"></p>
+							</div>
+							<div class="form-group">
+								<label for="editedSurfaceTotal">Surface Total</label> <input
+									id="editedSurfaceTotal" type="text" class="form-control"
+									th:field="*{surfaceTotal}"> <span class="text-danger"
+									th:if="${#fields.hasErrors('surfaceTotal')}"
+									th:errors="*{surfaceTotal}"></span>
+							</div>
+							<div class="form-group">
+								<label for="editedSurfaceCouvert">Surface Couvert</label> <input
+									id="editedSurfaceCouvert" type="text" class="form-control"
+									th:field="*{surfaceCouvert}"> <span class="text-danger"
+									th:if="${#fields.hasErrors('surfaceCouvert')}"
+									th:errors="*{surfaceCouvert}"></span>
+							</div>
+
+							<div class="form-group">
+								<label for="editedRues">Rue</label>
+								<div>
+									<p th:each="role,rowStat : ${allRues}">
+										<input id="editedRues" type="checkbox"
+											th:field="*{rues[__${rowStat.index}__].id}"
+											th:value="${rue.codeRue}" /> <label th:text="${rue.nomRue}">Rue</label>
+									</p>
+								</div>
+							</div>
+							<!--                         <div class="form-group"> -->
+							<!--                             <label for="editUserEnabled">Enabled</label> -->
+							<!--                             <div> -->
+							<!--                                 <input id="editUserEnabled" type="checkbox" th:field="*{enabled}" th:value="*{enabled}"> -->
+							<!--                                 Enabled -->
+							<!--                                 </input> -->
+							<!--                             </div> -->
+							<!--                         </div> -->
+							<a class="btn btn-dark" th:href="@{/adminPage/articles}">Cancel</a>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="fragments/footer :: footer"></footer>
+	<div th:replace="fragments/jsScripts :: scripts"></div>
+
+</body>
+</html>

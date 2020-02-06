@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+<div th:fragment="admin-sidebar" id="admin-sidebar" >
+    <aside id="admin-nav">
+        <nav class="navbar navbar-dark bg-dark">
+            <ul  class="navbar-nav flex-column" sec:authorize="${isAuthenticated()}">
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/adminPage/users}" href="/adminPage/users">Users</a>
+                </li >
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/adminPage/roles}" href="/adminPage/roles">Roles</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/adminPage/rues}" href="/adminPage/rues">Rues</a>
+                </li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/adminPage/cellules}" href="/adminPage/cellules">Cellules</a>
+                </li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/adminPage/secteurs}" href="/adminPage/secteurs">Secteurs</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/adminPage/arons}" href="/adminPage/arons">Arrondissements</a>
+                </li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/adminPage/municips}" href="/adminPage/municips">Municipalités</a>
+                </li>				                         
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/adminPage/densites}" href="/adminPage/densites">Densités</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/adminPage/coefficients}" href="/adminPage/coefficients">Coefficients</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/adminPage/vocations}" href="/adminPage/vocations">Vocations</a>
+                </li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/adminPage/categories}" href="/adminPage/categories">Categories</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/adminPage/prestations}" href="/adminPage/prestations">Prestations</a>
+                </li>                                                                                               
+				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/adminPage/tarifications}" href="/adminPage/tarifications">Tarifications</a>
+                </li>                                                                                               
+                                                                                                                                            
+            </ul>
+        </nav>
+    </aside>
+</div>
+</body>
+</html>

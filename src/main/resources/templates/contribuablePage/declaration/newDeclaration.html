@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+	<nav th:replace="fragments/header :: nav"></nav>
+	<div id="admin-section">
+		<div class="admin-inner">
+			<div class="container">
+				<div class="d-flex flex-row">
+					<div th:replace="fragments/adminSidebar :: admin-sidebar"></div>
+					<div id="admin-content">
+						<form class="admin-form"
+							th:action="@{/contribuablePage/declarations/newDeclaration}"
+							th:object="${newArticle}" th:method="post" method="post">
+							<ul class="global-errors" th:if="${#fields.hasErrors('global')}">
+								<li class="text-danger"
+									th:each="err : ${#fields.errors('global')}" th:text="${err}">Input
+									is incorrect</li>
+							</ul>
+							<div class="form-group">
+								<label for="newPrestations">Statut Déclarant</label> <select
+									th:field="*{statutDeclarant}" id="newPrestations"
+									th:with="strList = ${ {'Propriétaire','Bénéficiaire','Occupant','Exploitant'} }"
+									class="form-control">
+									<option th:each="p, iStat: ${strList}" th:value="${p}"
+										th:text="${p}"
+										th:selected="${pres != null and #lists.contains(pres,(iStat.index) + 1)}">
+									</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="newEtatTNBDeclare">Etat Declaré</label> <input
+									type="radio" class="form-control" th:field="*{etatDeclare}"
+									id="newEtatTNBDeclare" th:name="etat"> <input
+									type="text" class="form-control" th:field="*{andresseNB}"
+									id="newAdresseNB" placeholder="Enter adresse non bati">
+								<input type="text" class="form-control" th:field="*{surfaceNB}"
+									id="newSurfaceNB" placeholder="Enter surface non bati">
+								<input type="text" class="form-control" th:field="*{valVenalNB}"
+									id="newValVenalNB" placeholder="Enter surface non bati">
+								<p class="text-danger" th:if="${#fields.hasErrors('TNB')}"
+									th:errors="*{TNB}"></p>
+								<label for="newEtatTBDeclare"></label> <input th:name="etat"
+									type="radio" class="form-control" th:field="*{etatDeclare}"
+									id="newEtatTBDeclare"> <input type="text"
+									class="form-control" th:field="*{andresseB}" id="newAdresseB"
+									placeholder="Enter adresse bati"> <input type="text"
+									class="form-control" th:field="*{numB}" id="newNumB"
+									placeholder="Enter numero"> <input type="text"
+									class="form-control" th:field="*{surfaceTotalB}"
+									id="newSurfaceTotalB" placeholder="Enter surface total">
+								<input type="text" class="form-control"
+									th:field="*{surfaceCouvertB}" id="newSurfaceCouvertB"
+									placeholder="Enter surface Couvert">
+								<p class="text-danger" th:if="${#fields.hasErrors('TB')}"
+									th:errors="*{TB}"></p>
+							</div>
+							<div class="form-group">
+								<label for="newStatutTIBDeclare">Statut Déclaré</label> <input
+									type="checkbox" class="form-control" th:field="*{TIB}"
+									id="newStatutTIBDeclare"> <label
+									for="newStatutDeclareTcl"></label> <input type="checkbox"
+									class="form-control" th:field="*{TCL}" id="newStatutDeclareTcl">
+								<label for="newStatutDeclareTcl"></label><input type="text"
+									class="form-control" th:field="*{actTCL}" id="newActTcl">
+
+								<p class="text-danger" th:if="${#fields.hasErrors('TIB')}"
+									th:errors="*{TIB}"></p>
+								<p class="text-danger" th:if="${#fields.hasErrors('TCL')}"
+									th:errors="*{TCL}"></p>
+							</div>
+							<div class="form-group">
+								<label for="newPrestations">Prestations</label> <select multiple
+									th:field="*{pres}" id="newPrestations"
+									th:with="strList = ${ {'Nettoyage','Eclairage Public','Rues Goudronnés','Dégagement Eaux Usés','Dégagement Eaux Pluvial','Trottoirs Pavetés'} }"
+									class="form-control">
+									<option th:each="p, iStat: ${strList}" th:value="${p}"
+										th:text="${p}"
+										th:selected="${pres != null and #lists.contains(pres,(iStat.index) + 1)}">
+									</option>
+								</select>
+								<p class="text-danger"
+									th:if="${#fields.hasErrors('prestations')}"
+									th:errors="*{prestations}"></p>
+							</div>
+							<a class="btn btn-dark"
+								th:href="@{/contribuablePage/declarations}">Cancel</a>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="fragments/footer :: footer"></footer>
+	<div th:replace="fragments/jsScripts :: scripts"></div>
+
+</body>
+</html>

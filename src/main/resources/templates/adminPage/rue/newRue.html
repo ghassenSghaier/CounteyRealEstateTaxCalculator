@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+	<nav th:replace="fragments/header :: nav"></nav>
+
+	<div id="admin-section">
+		<div class="admin-inner">
+			<div class="container">
+				<div class="d-flex flex-row">
+					<div th:replace="fragments/adminSidebar :: admin-sidebar"></div>
+
+					<div id="admin-content">
+						<form class="admin-form" th:action="@{/adminPage/rues/newRue}"
+							th:object="${newRue}" th:method="post" method="post">
+							<ul class="global-errors" th:if="${#fields.hasErrors('global')}">
+								<li class="text-danger"
+									th:each="err : ${#fields.errors('global')}" th:text="${err}">Input
+									is incorrect</li>
+							</ul>
+							<div class="form-group">
+								<label for="newRueCode">Code Rue</label> <input type="text"
+									class="form-control" th:field="*{code}" id="newRueCode"
+									placeholder="Enter code">
+								<p class="text-danger" th:if="${#fields.hasErrors('code')}"
+									th:errors="*{code}"></p>
+							</div>
+							<div class="form-group">
+								<label for="newRueName">Nom Rue</label> <input type="text"
+									class="form-control" th:field="*{nom}" id="newRueName"
+									placeholder="Enter Name">
+								<p class="text-danger" th:if="${#fields.hasErrors('nom')}"
+									th:errors="*{nom}"></p>
+							</div>
+							<div class="form-group">
+								<label for="newCelluleCode">code Cellule</label> <input
+									type="text" class="form-control" th:field="*{code}"
+									id="newCelluleCode" placeholder="Enter code cellule">
+								<p class="text-danger" th:if="${#fields.hasErrors('code')}"
+									th:errors="*{code}"></p>
+							</div>
+							<a class="btn btn-dark" th:href="@{/adminPage/rues}">Cancel</a>
+							<button type="submit" class="btn btn-primary">Submit</button>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="fragments/footer :: footer"></footer>
+	<div th:replace="fragments/jsScripts :: scripts"></div>
+
+</body>
+</html>

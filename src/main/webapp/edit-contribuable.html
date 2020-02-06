@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Update User</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container my-5">
+		<h3>Update Student</h3>
+		<div class="card">
+			<div class="card-body">
+				<div class="col-md-8">
+					<form action="#"
+						th:action="@{/taxecommune/rest/v1/services/contribuable/update/{id}(id=${contribuable.id})}"
+						th:object="${contribuable}" method="post">
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label for="nom" class="col-form-label">Nom</label> <input
+									type="text" th:field="*{name}" class="form-control" id="nom"
+									placeholder="nom"> <span
+									th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"
+									class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="prenom" class="col-form-label">Prenom</label> <input
+									type="text" th:field="*{prenom}" class="form-control" id="name"
+									placeholder="Name"> <span
+									th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"
+									class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="username" class="col-form-label">Username</label> <input
+									type="text" th:field="*{prenom}" class="form-control" id="name"
+									placeholder="Name"> <span
+									th:if="${#fields.hasErrors('username')}"
+									th:errors="*{username}" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="password" class="col-form-label">Password</label> <input
+									type="text" th:field="*{prenom}" class="form-control" id="name"
+									placeholder="Name"> <span
+									th:if="${#fields.hasErrors('password')}"
+									th:errors="*{password}" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="identifiant" class="col-form-label">identifiant</label>
+								<input type="text" th:field="*{identifiant}"
+									class="form-control" id="identifiant" placeholder="Identifiant">
+								<span th:if="${#fields.hasErrors('identifiant')}"
+									th:errors="*{identifiant}" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="codePostal" class="col-form-label">code
+									postal</label> <input type="text" th:field="*{codePostal}"
+									class="form-control" id="codepos" placeholder="Code Postal">
+								<span th:if="${#fields.hasErrors('codePostal')}"
+									th:errors="*{codePostal}" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="ville" class="col-form-label">Ville</label> <input
+									type="text" th:field="*{ville}" class="form-control" id="ville"
+									placeholder="Ville"> <span
+									th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"
+									class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="adresse" class="col-form-label">Adresse</label> <input
+									type="text" th:field="*{adresse}" class="form-control"
+									id="adresse" placeholder="adresse"> <span
+									th:if="${#fields.hasErrors('adresse')}" th:errors="*{adresse}"
+									class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="statut" class="col-form-label">Statut</label> <select
+									th:field="*{statut}" class="form-control" id="statut">
+									<option value=""></option>
+								</select>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="email" class="col-form-label">Email</label> <input
+									type="text" th:field="*{email}" class="form-control" id="email"
+									placeholder="Email"> <span
+									th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+									class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="numeroTel" class="col-form-label">Numéro de
+									telephone</label> <input type="text" th:field="*{numeroTel}"
+									class="form-control" id="numeroTel" placeholder="numeroTel">
+								<span th:if="${#fields.hasErrors('numeroTel')}"
+									th:errors="numeroTel" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="codeFiscal" class="col-form-label">code
+									Fiscal</label> <input type="text" th:field="*{codeFiscal}"
+									class="form-control" id="codeFiscal" placeholder="codeFiscal">
+								<span th:if="${#fields.hasErrors('codeFiscal')}"
+									th:errors="codeFiscal" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="numeroCin" class="col-form-label">Numéro de
+									carte d'identité nationale</label> <input type="text"
+									th:field="*{numCin}" class="form-control" id="numCin"
+									placeholder="numero de la carte d'identité nationale">
+								<span th:if="${#fields.hasErrors('numCin')}"
+									th:errors="numerCin" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="numPasseport" class="col-form-label">Numéro
+									de Passeport</label> <input type="text" th:field="*{numPasseport}"
+									class="form-control" id="numPasseport"
+									placeholder="numero de passeport"> <span
+									th:if="${#fields.hasErrors('numPasseport')}"
+									th:errors="numPasseport" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="carteSejour" class="col-form-label">Numéro
+									de Carte Sejour</label> <input type="text" th:field="*{carteSejour}"
+									class="form-control" id="carteSejour"
+									placeholder="numero de Carte Sejour"> <span
+									th:if="${#fields.hasErrors('carteSejour')}"
+									th:errors="carteSejour" class="text-danger"></span>
+							</div>
+							<div class="form-group col-md-8">
+								<input type="submit" class="btn btn-primary"
+									value="Update Student">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
