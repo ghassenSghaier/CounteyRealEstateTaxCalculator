@@ -1,5 +1,4 @@
 package gov.tn.taxecommune.entity;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.Date;

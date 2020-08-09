@@ -13,8 +13,8 @@ public class CacheConfiguration {
 	@Bean
 	public CacheManager cacheManager() {
 		return new ConcurrentMapCacheManager("cache.allUsersPageable", "cache.allUsers", "cache.allUsersPageable",
-				"cache.allArticles", "cache.allArticlesPageable", "cache.articleByNumeroMunicipal",
-				"cache.articlesByNumRep", "cache.articleById", "cache.allArticlesEagerly",
+				"cache.allArticles","cache.articleRueByCodeRue", "cache.allArticlesPageable", "cache.articleByNumeroMunicipal",
+				"cache.articlesByNumRep","cache.articleRueById","cache.articleRueByCodeArticle","cache.allArticleRues", "cache.articleById", "cache.allArticlesEagerly",
 				"cache.bynumeroMunicipalContaining", "cache.byCodePostalContaining", "cache.allRues",
 				"cache.allRuesPageable", "cache.rueByCodeRue", "cache.allRuesEagerly", "cache.byClasseRueContaining",
 				"cache.byNomRueContaining", "cache.byAutreClasseContaining", "cache.allUsersEagerly",

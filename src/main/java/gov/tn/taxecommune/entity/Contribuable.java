@@ -1,4 +1,5 @@
 package gov.tn.taxecommune.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Collection;
@@ -9,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
@@ -143,7 +143,7 @@ public class Contribuable extends User implements Serializable {
 
     public void setNumeroTel(long numeroTel) {
         this.numeroTel = numeroTel;
-    }
+    }    
 
     public Identifiant getIdentite() {
         return identite;
@@ -152,6 +152,8 @@ public class Contribuable extends User implements Serializable {
     public void setIdentite(Identifiant identite) {
         this.identite = identite;
     }
+
+    
 
     public Collection<ContribuableArticle> getContribuableArticles() {
         return contribuableArticles;

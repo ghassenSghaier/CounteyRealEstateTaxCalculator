@@ -16,7 +16,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
 	Article findByNumeroMunicipalNot(Long id);
 
-	Optional<Article> findByNumeroMunicipal(long numeroMunicipal);
+	Optional<Article> findByNumeroMunicipal(String numeroMunicipal);
 	
 	//Article findByIdNot(Long id);
 	
@@ -42,12 +42,12 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 	List<Article> findByNumRep(String numeroMunicipal);
 
 	@Query("SELECT a FROM Article a JOIN FETCH a.articlerues WHERE a.numeroMunicipal = (:numeroMunicipal)")
-	Article findByNumeroMunicipalEagerly(@Param("numeroMunicipal") Long numeroMunicipal);
+	Article findByNumeroMunicipalEagerly(@Param("numeroMunicipal") String numeroMunicipal);
 
 	// ==========================================================================
 	// endregion
 
-	Boolean existsByNumeroMunicipal(Long numeroMunicipal);
+	Boolean existsByNumeroMunicipal(String numeroMunicipal);
 
-	void deleteByNumeroMunicipal(Long numeroMunicipal);	
+	void deleteByNumeroMunicipal(String numeroMunicipal);	
 }

@@ -96,4 +96,14 @@ public class ArticleTypeActivité implements Serializable {
         this.clotureArticletypeactivité = clotureArticletypeactivité;
     }
 
+    public ArticleTypeActivitePK getArticleTypeActivitePK() {
+        return articleTypeActivitePK;
+    }
+
+    public void setArticleTypeActivitePK(ArticleTypeActivitePK articleTypeActivitePK) {
+        this.articleTypeActivitePK = articleTypeActivitePK;
+    }
+    
+    
+
 }

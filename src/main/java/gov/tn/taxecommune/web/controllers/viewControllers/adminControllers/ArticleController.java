@@ -157,7 +157,7 @@ public class ArticleController {
     }
 
     @GetMapping("/articles/{id}")
-    public String getEditArticleForm(@PathVariable Long id, Model model) {
+    public String getEditArticleForm(@PathVariable String id, Model model) {
         ArticleUpdateDto articleUpdateDto = articleUpdateDtoService.findById(id);
         List<Rue> allRues = rueService.findAll();
         articleUpdateDto.setRue(articleService.getAssignedRue(articleUpdateDto));
@@ -167,12 +167,12 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/{id}")
-    public String updateArticle(Model model, @PathVariable Long id,
+    public String updateArticle(Model model, @PathVariable String id,
             @ModelAttribute("oldArticle") @Valid ArticleUpdateDto articleUpdateDto, BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
 
         String formWithErrors = "adminPage/article/editArticle";
-        Optional<Article> persistedArticle = articleService.findById(id);
+        Optional<Article> persistedArticle = articleService.findByNumeroMunicipal(id);
         List<Rue> allRues = rueService.findAll();
         Article numeroMunicipalAlreadyExists = articleService.findByNumeroMunicipal(id).get();
         boolean hasErrors = false;
@@ -256,7 +256,7 @@ public class ArticleController {
         System.out.println(newArticle.toString());
         log.debug(newArticle.toString());
         try {
-            numeroMunicipalAlreadyExists = articleService.findByNumeroMunicipal(Long.parseLong(newArticle.getNumeroMunicipal())).get();
+            numeroMunicipalAlreadyExists = articleService.findByNumeroMunicipal(newArticle.getNumeroMunicipal()).get();
 //			identifiantContribuableAlreadyExists = contribuableService.findByIdentifiantContribuable(newArticle.getIdentifiant()).get();
 
             if (numeroMunicipalAlreadyExists != null) {

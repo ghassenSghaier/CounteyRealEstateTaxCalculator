@@ -1,9 +1,6 @@
 package gov.tn.taxecommune.web.controllers.viewControllers.contribuableControllers;
-
 import java.util.NoSuchElementException;
-
 import javax.validation.Valid;
-
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import gov.tn.taxecommune.entity.Declaration;
 import gov.tn.taxecommune.service.ControleService;
 import gov.tn.taxecommune.service.DeclarationDtoService;
@@ -38,10 +34,6 @@ public class DeclarationController {
 	private DeclarationDtoService declarationDtoService;
 	private DeclarationFinder declarationFinder;
 	
-
-	/*
-	 * Get all users or search users if there are searching parameters
-	 */
 	@GetMapping("/declarations")
 	public ModelAndView getDeclarations(ModelAndView modelAndView,
 			DeclarationSearchParameters declarationSearchParameters) {
@@ -56,8 +48,7 @@ public class DeclarationController {
 		if (!declarationSearchParameters.getPropertyValue().isPresent()
 				|| declarationSearchParameters.getPropertyValue().get().isEmpty())
 			declarationSearchResult.setDeclarationPage(declarationDtoService.findAllPageable(pageRequest));
-
-		// Search queries
+		
 		else {
 			declarationSearchResult = declarationFinder.searchDeclarationsByProperty(pageRequest,
 					declarationSearchParameters);

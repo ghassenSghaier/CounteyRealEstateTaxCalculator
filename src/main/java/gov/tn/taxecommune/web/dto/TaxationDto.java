@@ -26,7 +26,7 @@ public class TaxationDto {
 	private double montantTTNB;
 
 	@NotBlank(message = "code Article is required")
-	private long numeroMunicipal;
+	private String numeroMunicipal;
 
 	private Article article;
 	
@@ -37,7 +37,7 @@ public class TaxationDto {
 			@NotBlank(message = "montant tib is required") double montantTIB,
 			@NotBlank(message = "montant tcl is required") double montantTCL,
 			@NotBlank(message = "montant ttnb is required") double montantTTNB,
-			@NotBlank(message = "code Article is required") long numeroMunicipal,
+			@NotBlank(message = "code Article is required") String numeroMunicipal,
 			@NotBlank(message = "date is required") Date anneeTaxation) {
 		super();
 		this.id = id;
@@ -93,11 +93,11 @@ public class TaxationDto {
 		this.montantTTNB = montantTTNB;
 	}
 
-	public long getNumeroMunicipal() {
+	public String getNumeroMunicipal() {
 		return numeroMunicipal;
 	}
 
-	public void setNumeroMunicipal(long numeroMunicipal) {
+	public void setNumeroMunicipal(String numeroMunicipal) {
 		this.numeroMunicipal = numeroMunicipal;
 	}
 

@@ -96,4 +96,14 @@ public class CategorieArticle implements Serializable {
         this.clotureVocation = clotureVocation;
     }
 
+    public CategorieArticlePK getCategorieArticlePK() {
+        return categorieArticlePK;
+    }
+
+    public void setCategorieArticlePK(CategorieArticlePK categorieArticlePK) {
+        this.categorieArticlePK = categorieArticlePK;
+    }
+    
+    
+
 }

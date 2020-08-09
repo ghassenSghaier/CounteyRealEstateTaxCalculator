@@ -15,7 +15,7 @@ public class ArticleUpdateDto {
 
 //	@ValidTripleNumericField
 	@NotNull(message = "numéro municipal is required")
-	private long numeroMunicipal;
+	private String numeroMunicipal;
 
 	@ValidCodePostal
 	@NotBlank(message = "code postal is required")
@@ -30,7 +30,7 @@ public class ArticleUpdateDto {
 	@NotNull(message = "rue is required")
 	private Rue rue;
 
-	public ArticleUpdateDto(@NotNull(message = "numéro municipal is required") long numeroMunicipal,
+	public ArticleUpdateDto(@NotNull(message = "numéro municipal is required") String numeroMunicipal,
 			@NotBlank(message = "code postal is required") String codePostal,
 			@NotNull(message = "surface total is required") double surfaceTotal,
 			@NotNull(message = "prestation is required") List<String> prestations,
@@ -47,11 +47,11 @@ public class ArticleUpdateDto {
 		super();
 	}
 
-	public long getNumeroMunicipal() {
+	public String getNumeroMunicipal() {
 		return numeroMunicipal;
 	}
 
-	public void setNumeroMunicipal(long numeroMunicipal) {
+	public void setNumeroMunicipal(String numeroMunicipal) {
 		this.numeroMunicipal = numeroMunicipal;
 	}
 

@@ -57,10 +57,10 @@ public class ArticleDtoService<T> {
 		return new PageImpl<>(articleDtos, pageable, articles.getTotalElements());
 	}
 
-	public Optional<ArticleDto> findById(Long id) {
-		Optional<Article> retrievedArticle = articleService.findById(id);
-		return retrievedArticle.map(article -> modelMapper.map(article, ArticleDto.class));
-	}
+//	public Optional<ArticleDto> findById(Long id) {
+//		Optional<Article> retrievedArticle = articleService.findById(id);
+//		return retrievedArticle.map(article -> modelMapper.map(article, ArticleDto.class));
+//	}
 
 	public Page<ArticleDto> findByIdPageable(Long id, PageRequest pageRequest) {
 		Page<Article> articles = articleService.findByIdPageable(id, pageRequest);

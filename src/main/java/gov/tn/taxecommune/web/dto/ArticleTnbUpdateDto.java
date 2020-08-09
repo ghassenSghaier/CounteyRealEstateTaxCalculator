@@ -14,7 +14,7 @@ public class ArticleTnbUpdateDto extends ArticleUpdateDto {
 
 	private Densite densité;
 
-	public ArticleTnbUpdateDto(@NotNull(message = "numéro municipal is required") long numeroMunicipal,
+	public ArticleTnbUpdateDto(@NotNull(message = "numéro municipal is required") String numeroMunicipal,
 			@NotBlank(message = "code postal is required") String codePostal,
 			@NotNull(message = "surface total is required") double surfaceTotal,
 			@NotNull(message = "prestation is required") List<String> prestations,

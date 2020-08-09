@@ -88,13 +88,13 @@ public class RestfulController {
 	}
 
 	@DeleteMapping("/adminPage/json-articles/delete/{id}")
-	public ResponseEntity<Article> deleteArticle(@PathVariable Long id) {
-		Optional<Article> articleToDelete = articleService.findById(id);
+	public ResponseEntity<Article> deleteArticle(@PathVariable String numeroMunicipal) {
+		Optional<Article> articleToDelete = articleService.findByNumeroMunicipal(numeroMunicipal);
 
 		if (!articleToDelete.isPresent())
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-		articleService.deleteById(id);
+		articleService.deleteByNumeroMunicipal(numeroMunicipal);
 		return new ResponseEntity<>(articleToDelete.get(), HttpStatus.NO_CONTENT);
 	}
 

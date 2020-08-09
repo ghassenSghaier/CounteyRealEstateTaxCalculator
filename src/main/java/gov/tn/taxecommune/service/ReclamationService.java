@@ -77,7 +77,7 @@ public class ReclamationService {
 		return reclamationRepository.findByCASEagerly(username).get();
 	}
 		
-	public Reclamation findByUserAndArticle(String username,long numeroMunicipal) {
+	public Reclamation findByUserAndArticle(String username,String numeroMunicipal) {
 		return reclamationRepository.findByUserAndArticle(username,numeroMunicipal).get();
 	}
 	

@@ -7,13 +7,13 @@ public class ReclamationDto {
 
 	private Long id;
 
-	private long article;
+	private String article;
 
 	private String taxation;
 
 	private String motifReclamation;
 
-	public ReclamationDto(Long id, long article, String taxation, String motifReclamation) {
+	public ReclamationDto(Long id, String article, String taxation, String motifReclamation) {
 		super();
 		this.id = id;
 		this.article = article;
@@ -33,11 +33,11 @@ public class ReclamationDto {
 		this.id = id;
 	}
 
-	public long getArticle() {
+	public String getArticle() {
 		return article;
 	}
 
-	public void setArticle(long article) {
+	public void setArticle(String article) {
 		this.article = article;
 	}
 

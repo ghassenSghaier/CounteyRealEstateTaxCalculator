@@ -14,7 +14,7 @@ import gov.tn.taxecommune.entity.ArticleTypeActivité;
 public interface ArticleTypeActivitéRepository extends JpaRepository<ArticleTypeActivité, Long> {
 
 	@Query("SELECT  at FROM ArticleTypeActivité at JOIN at.article as articles where articles.numeroMunicipal = (:codeArticle)")
-	List<ArticleTypeActivité> findByCodeArticle(long codeArticle);
+	List<ArticleTypeActivité> findByCodeArticle(String codeArticle);
 
 	@Query("SELECT  at FROM ArticleTypeActivité at JOIN at.typeActivite as types where types.codeType = (:codeType)")
 	List<ArticleTypeActivité> findByCodeType(String codeType);

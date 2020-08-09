@@ -33,7 +33,7 @@ public class ArticleTclUpdateDto extends ArticleUpdateDto {
 	@NotBlank(message = "travaux publics is required")
 	private boolean travauxPublics;
 
-	public ArticleTclUpdateDto(@NotNull(message = "numéro municipal is required") long numeroMunicipal,
+	public ArticleTclUpdateDto(@NotNull(message = "numéro municipal is required") String numeroMunicipal,
 			@NotBlank(message = "code postal is required") String codePostal,
 			@NotNull(message = "surface total is required") double surfaceTotal,
 			@NotNull(message = "prestation is required") List<String> prestations,

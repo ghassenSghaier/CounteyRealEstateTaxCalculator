@@ -61,7 +61,7 @@ public interface ReclamationRepository extends JpaRepository<Reclamation, Long> 
 
 	@Query("SELECT r FROM Reclamation r inner JOIN r.articleTaxation ar inner join ar.taxation t inner join t.article a  left join a.contribuableArticle cas inner join cas.contribuable c inner join c.contribuableArticles ca inner join ca.article a WHERE c.username = (:username) and cas.enCours = true and a.numeroMunicipal = (:numeroMunicipal) and r.dateReclamation = year(sysdate())")
 	Optional<Reclamation> findByUserAndArticle(@Param("username") String username,
-			@Param("numeroMunicipal") long numeroMunicipal);
+			@Param("numeroMunicipal") String numeroMunicipal);
 
 	@Query("SELECT r FROM Reclamation r inner JOIN r.articleTaxation ar inner join ar.taxation t inner JOIN t.article a left join a.contribuableArticle cas WHERE cas.enCours = true and t.code = (:codeTaxation)")
 	Optional<List<Reclamation>> findByTaxationEagerly(@Param("codeTaxation") String codeReclamation);

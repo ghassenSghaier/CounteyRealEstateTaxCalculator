@@ -50,7 +50,7 @@ public class ArticleTypeActivitéService {
 	}
 
 	@Cacheable(value = "cache.articleTypeActivitéByCodeArticle", key = "#name", unless = "#result == null")
-	public List<ArticleTypeActivité> findByArticle(long name) {
+	public List<ArticleTypeActivité> findByArticle(String name) {
 		return articleTypeActivitéRepository.findByCodeArticle(name);
 	}
 

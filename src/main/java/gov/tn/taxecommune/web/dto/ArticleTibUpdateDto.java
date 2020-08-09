@@ -24,7 +24,7 @@ public class ArticleTibUpdateDto extends ArticleUpdateDto {
 	@NotBlank(message = "type article is required")
 	private String typeArticle;
 
-	public ArticleTibUpdateDto(@NotNull(message = "numéro municipal is required") long numeroMunicipal,
+	public ArticleTibUpdateDto(@NotNull(message = "numéro municipal is required") String numeroMunicipal,
 			@NotBlank(message = "code postal is required") String codePostal,
 			@NotNull(message = "surface total is required") double surfaceTotal,
 			@NotNull(message = "prestation is required") List<String> prestations,

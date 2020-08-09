@@ -34,7 +34,7 @@ public class ArticleUpdateDtoService {
 		return articleUpdateDtosList;
 	}
 
-	public ArticleUpdateDto findById(Long id) {
+	public ArticleUpdateDto findById(String id) {
 		return modelMapper.map(articleService.findByNumeroMunicipalEagerly(id), ArticleUpdateDto.class);
 	}
 

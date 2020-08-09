@@ -42,6 +42,16 @@ public class ArticlePrestation implements Serializable {
     @Column(name = "date_cloture")
     private Date dateCloture;
 
+    public ArticlePrestationPK getArticlePrestationPK() {
+        return articlePrestationPK;
+    }
+
+    public void setArticlePrestationPK(ArticlePrestationPK articlePrestationPK) {
+        this.articlePrestationPK = articlePrestationPK;
+    }
+    
+    
+
     public ArticlePrestation(Article article, gov.tn.taxecommune.entity.Prestation prestation,
             Boolean encoursPrestation, Date dateAjout, Date dateCloture) {
         super();

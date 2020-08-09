@@ -25,7 +25,7 @@ public class Article implements Serializable {
     @Id
     @NotNull
     @Column(name = "num_municipal", length = 12, unique = true)
-    private long numeroMunicipal;
+    private String numeroMunicipal;
     /**
      * s'il s'agit de plusieurs maison dans le meme emplacement *
      */
@@ -105,7 +105,6 @@ public class Article implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private TypeArticle typeArticle;
 
-  
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "article", fetch = FetchType.LAZY, orphanRemoval = true)
     private Collection<ArticleTypeActivité> articleActivite;
@@ -217,11 +216,11 @@ public class Article implements Serializable {
         //articlerues = new ArrayList<ArticleRue>();
     }
 
-    public long getNumeroMunicipal() {
+    public String getNumeroMunicipal() {
         return numeroMunicipal;
     }
 
-    public void setNumeroMunicipal(long numeroMunicipal) {
+    public void setNumeroMunicipal(String numeroMunicipal) {
         this.numeroMunicipal = numeroMunicipal;
     }
 

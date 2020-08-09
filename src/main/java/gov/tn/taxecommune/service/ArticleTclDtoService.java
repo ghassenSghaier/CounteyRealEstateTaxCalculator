@@ -57,10 +57,10 @@ public class ArticleTclDtoService extends ArticleDtoService {
 		return new PageImpl<>(articleDtos, pageable, articles.getTotalElements());
 	}
 
-	public Optional<ArticleTclDto> findById(Long id) {
-		Optional<Article> retrievedArticle = articleService.findById(id);
-		return retrievedArticle.map(article -> modelMapper.map(article, ArticleTclDto.class));
-	}
+//	public Optional<ArticleTclDto> findById(Long id) {
+//		Optional<Article> retrievedArticle = articleService.findById(id);
+//		return retrievedArticle.map(article -> modelMapper.map(article, ArticleTclDto.class));
+//	}
 
 	public Page<ArticleTclDto> findByIdPageable(Long id, PageRequest pageRequest) {
 		Page<Article> articles = articleService.findByIdPageable(id, pageRequest);

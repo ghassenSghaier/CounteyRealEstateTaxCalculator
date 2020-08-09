@@ -236,6 +236,7 @@ function showInputTextOnRadioButtonSelected() {
 		}
 	})
 }
+
 function setNumeroMunicipalInitial() {
 	$("#newNumeroMunicipal").val(function(index, val) {
 		val = "000000000" + $("#newCodeTCL").val();
